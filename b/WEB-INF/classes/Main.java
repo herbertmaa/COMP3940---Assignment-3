@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 
 /**
  * This utility class provides an abstraction layer for sending multipart HTTP
@@ -47,8 +48,8 @@ public class Main
     public static void main(String[] args)
     {
         String charset = "UTF-8";
-        String requestURL = "http://localhost:8081/a3/upload";
-        String file_path = "C:\\tomcat\\webapps\\a3\\WEB-INF\\classes\\12.png";
+        String requestURL = "http://localhost:8080/a3/upload";
+        String file_path = "/Users/herbertma/desktop/test1.png";
 
         //path of file to uploaded
         File uploadFile = new File(file_path);
@@ -62,7 +63,6 @@ public class Main
         try
         {
             Main multipart = new Main(requestURL, charset);
-
             multipart.addFilePart("fileName", uploadFile);
             multipart.addFormField("caption", caption);
             multipart.addFormField("date", date);
@@ -108,6 +108,7 @@ public class Main
         writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(fileName)).append(LINE_FEED);
         writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
         writer.append(LINE_FEED).flush();
+        Files.copy(uploadFile.toPath(), outputStream);
         outputStream.flush();
         writer.append(LINE_FEED).flush();
     }
