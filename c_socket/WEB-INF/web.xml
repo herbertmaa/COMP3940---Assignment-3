@@ -1,0 +1,34 @@
+<web-app>
+	<servlet>
+		<servlet-name>Socket</servlet-name>
+		<servlet-class>FunSocket</servlet-class>
+	</servlet>
+    
+    	<servlet>
+                <servlet-name>SocketServer</servlet-name>
+                <servlet-class>SocketServer</servlet-class>
+        </servlet>
+
+   <servlet-mapping>
+		<servlet-name>Socket</servlet-name>
+		<url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+   <servlet-mapping>
+   		<servlet-name>default</servlet-name>
+  		<url-pattern>/static/*</url-pattern>
+   </servlet-mapping>
+
+
+   <servlet-mapping>
+                <servlet-name>SocketServer</servlet-name>
+                <url-pattern>/websocket</url-pattern>
+   </servlet-mapping>
+
+
+
+
+
+
+</web-app>
+
